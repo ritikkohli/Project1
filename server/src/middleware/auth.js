@@ -2,9 +2,9 @@ const jwt = require("jsonwebtoken")
 
 const authentication = async function (req, res, next) {
     try {
-        if (!req.headers['x-api-key']) return res.status(400).send('Token is mandatory') //validating the header
+        if (!req.cookies['token']) return res.status(400).send({msg:'Token is mandatory'}) //validating the header
         try {
-            let decoded = jwt.verify(req.headers['x-api-key'], "ritik-very-secret-key") //veriying token
+            let decoded = jwt.verify(req.cookies['token'], "ritik-very-secret-key") //veriying token
             req.authorId = decoded['authorId'] //store authorId from token and send in req parameter
             next()
         }

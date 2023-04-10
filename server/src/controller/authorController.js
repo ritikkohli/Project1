@@ -35,7 +35,8 @@ const logIn = async function(req,res){
         let user = await authorModel.findOne({email:email,password:password})
         if(!user) return res.status(404).send({status:false,message:"Invalid mail or password"})
         // ---------------------------------------------
-        let token = await jwt.sign({authorId:user._id.toString()},"ritik-very-secret-key")
+        let token = await jwt.sign({authorId:user._id.toString()},"ritik-very-secret-key",{expiresIn : '1h'})
+        res.cookie('token',token)
         res.status(200).send({status: true,data:{token:token}})
     }
     catch(err){
@@ -43,4 +44,14 @@ const logIn = async function(req,res){
     }
 }
 
-module.exports = {createAuthor,logIn}
+const logout = async function(req,res){
+    try{
+        res.clearCookie('token',{path:'/'});
+        res.status(200).json('logout successfully')
+    }
+    catch(err){
+        res.status(500).send({status:false,message:err.message})
+    }
+}
+
+module.exports = {createAuthor,logIn,logout}

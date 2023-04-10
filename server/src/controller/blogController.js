@@ -7,26 +7,20 @@ const createBlog = async function (req, res) {
         let data = req.body
         // ---------------- validations ---------------
         if(!validBody(data)) return res.status(400).send({status:false,message:"Request body is empty"})
-        let {title,body,authorId,tags,category,subcategory,isPublished} = data
+        let {title,body,tags,category,subcategory,isPublished} = data
+        data.authorId = req.authorId;
         if(!validName(title)) return res.status(400).send({status:false,message:"Please provide title with valid format"})
-        if(!validBlogBody(body)) return res.status(400).send({status:false,message:"Please provide body with valid format"})
-        if(!validId(authorId)) return res.status(400).send({status:false,message:"Please provide authorId with valid format"})
-        let author = await authorModel.findById(authorId)
-        if (!author) return res.status(400).send({status:false,message:"No author exist with this authorId"})
-        if(tags){
+        // if(!validBlogBody(body)) return res.status(400).send({status:false,message:"Please provide body with valid format"})
+        // if(!validId(authorId)) return res.status(400).send({status:false,message:"Please provide authorId with valid format"})
+        // let author = await authorModel.findById(authorId)
+        // if (!author) return res.status(400).send({status:false,message:"No author exist with this authorId"})
+        if(tags.length){
             if(!validArrayOfString(tags)) return res.status(400).send({status:false,message:"Please provide tags with valid format"})
-            data.tags = tags.split(',')            
         }
-        if(!validArrayOfString(category)) return res.status(400).send({status:false,message:"Please provide category with valid format"})
-        data.category = category.split(',')        
-        if(subcategory){
+        if(!category) return res.status(400).send({status:false,message:"Please provide category with valid format"})
+        if(subcategory.length){
             if(!validArrayOfString(subcategory)) return res.status(400).send({status:false,message:"Please provide subcategory with valid format"})
-            data.subcategory = subcategory.split(',')
         }
-        if(isPublished){
-            if(!validBoolean(isPublished)) return res.status(400).send({status:false,message:"isPublished key accept boolean only"})
-            data.publishedAt = Date.now()
-        }        
         // ---------------------------------------------
         let blogCreated = await blogModel.create(data)
         return res.status(201).send({status:true,data:blogCreated})
@@ -60,10 +54,39 @@ const getBlogs = async function (req, res) {
         // ---------------------------------------------
         let blogs = await blogModel.find(condition)
         if(blogs.length == 0) return res.status(400).send({status:false,message:"No blog found"})
-        res.status(201).send({status:true,data:blogs})
+        res.status(201).send({status:true,blogs:blogs})
     }
     catch (err) {
         res.status(500).send({status:false,message:err.message})
+    }
+}
+
+const getById = async function(req,res){
+    try{
+        let blogId = req.params.blogId
+        if(!validId(blogId)) return res.status(400).send({status:false,message:"Please provide authorId with valid format"})
+        let blog = await blogModel.findOne({ _id: blogId , isDeleted: false })
+        if (!blog) return res.status(404).send({ status: false, msg: "No blog exist with this bolgId"})
+        let author = await authorModel.findById(blog.authorId)
+        // console.log(author)
+        res.status(200).send({status:true,blog:blog,author:author})
+    }
+    catch(error){
+        res.status(500).send({status:false,message:error.message})
+    }
+}
+
+const getMyBlogs = async function(req,res){
+    try{
+        let authorId = req.authorId
+        let blogs = await blogModel.find({isDeleted: false , authorId : authorId})
+        if (!blogs) return res.status(404).send({ status: false, msg: "No blog exist with this bolgId"})
+        let author = await authorModel.findById(blogs[0].authorId)
+        // console.log(author)
+        res.status(200).send({status:true,blogs:blogs,author:author})
+    }
+    catch(error){
+        res.status(500).send({status:false,message:error.message})
     }
 }
 
@@ -80,27 +103,26 @@ const updateBlog = async function (req, res) {
         if(req.authorId !== authorId) return res.status(400).send("Access Denied")
         // ---------------------------------------------
         if(!validBody(data)) return res.status(400).send({status:false,message:"Provide something to update"})
-        let {title,body,tags,subcategory} = data
+        let {title,body,tags,category} = data
         let update = {isPublished:true,publishedAt:Date.now()}
         if(title){
-            if(!validName(title)) return res.status(400).send({status:false,message:"Please provide title with valid format"})
+            // if(!validName(title)) return res.status(400).send({status:false,message:"Please provide title with valid format"})
             update.title = title            
         }
         if(body){
-            if(!validBlogBody(body)) return res.status(400).send({status:false,message:"Please provide body with valid format"})
+            // if(!validBlogBody(body)) return res.status(400).send({status:false,message:"Please provide body with valid format"})
             update.body = body
         }
-        if(tags){
+        if(tags.length){
             if(!validArrayOfString(tags)) return res.status(400).send({status:false,message:"Please provide tags with valid format"})
-            tags = tags.split(',')
+            update.tags = tags
         }
-        if(subcategory){
-            if(!validArrayOfString(subcategory)) return res.status(400).send({status:false,message:"Please provide subcategory with valid format"})
-            subcategory = subcategory.split(',')
+        if(category){
+            update.category = category
         }
+        //  return res.status(400).send({status:false,message:"Please provide category with valid format"})
         // ---------------------------------------------
-        let updatedBlog = await blogModel.findByIdAndUpdate(blogId,
-                          {$set:update,$push:{tags:tags,subcategory:subcategory}},{new:true})
+        let updatedBlog = await blogModel.findByIdAndUpdate(blogId,{$set:update},{new:true})
         res.status(201).send({status:true,data:updatedBlog})
     }
     catch(err){
@@ -171,4 +193,4 @@ const deleteByQuery = async function(req,res){
     }
 }
 
-module.exports = { createBlog,getBlogs,updateBlog,deleteById,deleteByQuery }
+module.exports = { createBlog,getBlogs,updateBlog,deleteById,deleteByQuery,getById,getMyBlogs }

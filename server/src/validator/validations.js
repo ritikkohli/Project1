@@ -30,7 +30,7 @@ function validPassword(password){
 function validBlogBody(body){
     if(!body) return false
     if(typeof body !== 'string' || body.length == 0) return false
-    return /^[a-zA-Z. ]+$/.test(body)
+    // return /^[a-zA-Z. ]+$/.test(body)
 }
 
 function validId(id){
@@ -43,7 +43,7 @@ function validBoolean(value){
 }
 
 function validArrayOfString(array){
-    if(typeof array == 'string') array = array.split(',')
+    // if(typeof array == 'string') array = array.split(',')
     for(let i=0;i<array.length;i++){
         if(typeof array[i] !== 'string' || array[i].length == 0) return false
     }
