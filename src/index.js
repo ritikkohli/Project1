@@ -20,10 +20,10 @@ mongoose.connect("mongodb+srv://ritikkohli:eJ9TDANLzfmCixVu@cluster0.gd4mqlp.mon
 
 app.use('/', route);
 
-app.use(express.static(path.join(__dirname,'./client/build')));
+app.use(express.static(path.join(__dirname,'../client/build')));
 
 app.get('*',function(req,res){
-    res.sendFile(path.join(__dirname,'./client/build/index.html'));
+    res.sendFile(path.join(__dirname,'../client/build/index.html'));
 });
 
 app.listen(process.env.PORT || 5000, function () {
