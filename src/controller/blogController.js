@@ -18,9 +18,9 @@ const createBlog = async function (req, res) {
             if(!validArrayOfString(tags)) return res.status(400).send({status:false,message:"Please provide tags with valid format"})
         }
         if(!category) return res.status(400).send({status:false,message:"Please provide category with valid format"})
-        if(subcategory.length){
-            if(!validArrayOfString(subcategory)) return res.status(400).send({status:false,message:"Please provide subcategory with valid format"})
-        }
+        // if(subcategory.length){
+            // if(!validArrayOfString(subcategory)) return res.status(400).send({status:false,message:"Please provide subcategory with valid format"})
+        // }
         // ---------------------------------------------
         let blogCreated = await blogModel.create(data)
         return res.status(201).send({status:true,data:blogCreated})
