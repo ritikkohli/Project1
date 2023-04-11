@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
-const route = require('./src/routes/route.js');
+const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
 const app = express();
 const cors = require('cors');
