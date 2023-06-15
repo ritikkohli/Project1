@@ -3,35 +3,27 @@
 
 live on - https://blog-manger.onrender.com/
 
-### HOME
-![homepage](https://github.com/ritikkohli/blogManagement/assets/108524122/c6315df0-364f-43f0-9672-ee9ad978eb8a)
+## Preview
+
+### Home
+![homepage](https://github.com/ritikkohli/blogManagement/assets/108524122/ce3c4abf-02d6-47a2-879f-5123b91f9afd)
 
 ### Sidebar
-![sidebar](https://github.com/ritikkohli/blogManagement/assets/108524122/e6a3172e-00c2-45a2-86a6-04ddd5b60de9)
+![sidebar](https://github.com/ritikkohli/blogManagement/assets/108524122/672c5462-3e51-497a-a42c-217ca0c367ad)
 
-### Signup
-![signup](https://github.com/ritikkohli/blogManagement/assets/108524122/e5d77215-40ef-40d6-8e10-3ccd805c2c98)
-
-### Login
-![login](https://github.com/ritikkohli/blogManagement/assets/108524122/985c6f32-aecd-4009-b22e-84e4a7fd278b)
-
-### Sidebar after login
-![sidebar-after-login](https://github.com/ritikkohli/blogManagement/assets/108524122/a2675a6f-677d-4feb-a890-a2be8252eeb4)
+### Login & Signup
+![login-signup](https://github.com/ritikkohli/blogManagement/assets/108524122/ff0d668b-453c-4a6c-aa4a-b72a885ad7eb)
 
 ### Myblogs
-![myblogs](https://github.com/ritikkohli/blogManagement/assets/108524122/221ad8ce-d62e-4877-a25b-c2fff7626793)
+![myblog](https://github.com/ritikkohli/blogManagement/assets/108524122/b2968823-7c51-43c0-ab5f-cd5d7a7ae628)
 
 ### Add blog
-![add blog](https://github.com/ritikkohli/blogManagement/assets/108524122/9a3f0ff3-35bd-4350-9341-e577ff8a6ee5)
+![add blog](https://github.com/ritikkohli/blogManagement/assets/108524122/937763fb-006e-4c35-a95d-21a1e1ffa174)
 
 ### Edit blog
-![edit-blog](https://github.com/ritikkohli/blogManagement/assets/108524122/2cedf461-0ca1-4150-a0d6-56e014285f30)
+![edit-blog](https://github.com/ritikkohli/blogManagement/assets/108524122/74983a19-d597-47ed-9263-786e60e71cac)
 
 
-### Key points
-- Create a group database `groupXDatabase`. You can clean the db you previously used and resue that.
-- This time each group should have a *single git branch*. Coordinate amongst yourselves by ensuring every next person pulls the code last pushed by a team mate. You branch will be checked as part of the demo. Branch name should follow the naming convention `project/booksManagementGroupX`
-- Follow the naming conventions exactly as instructed.
 
 ### Models
 - User Model
@@ -159,187 +151,3 @@ live on - https://blog-manger.onrender.com/
 ### Authorisation
 - Make sure that only the owner of the books is able to create, edit or delete the book.
 - In case of unauthorized access return an appropirate error message.
-
-## Testing 
-- To test these apis create a new collection in Postman named Project 4 Books Management 
-- Each api should have a new request in this collection
-- Each request in the collection should be rightly named. Eg Create user, Create book, Get books etc
-- Each member of each team should have their tests in running state
-
-Refer below sample
- ![A Postman collection and request sample](assets/Postman-collection-sample.png)
-
-## Response
-
-### Successful Response structure
-```yaml
-{
-  status: true,
-  message: 'Success',
-  data: {
-
-  }
-}
-```
-### Error Response structure
-```yaml
-{
-  status: false,
-  message: ""
-}
-```
-
-## Collections
-## users
-```yaml
-{
-  _id: ObjectId("88abc190ef0288abc190ef02"),
-  title: "Mr",
-  name: "John Doe",
-  phone: 9897969594,
-  email: "johndoe@mailinator.com", 
-  password: "abcd1234567",
-  address: {
-    street: "110, Ridhi Sidhi Tower",
-    city: "Jaipur",
-    pincode: "400001"
-  },
-  "createdAt": "2021-09-17T04:25:07.803Z",
-  "updatedAt": "2021-09-17T04:25:07.803Z",
-}
-```
-### books
-```yaml
-{
-  "_id": ObjectId("88abc190ef0288abc190ef55"),
-  "title": "How to win friends and influence people",
-  "excerpt": "book body",
-  "userId": ObjectId("88abc190ef0288abc190ef02"),
-  "ISBN": "978-0008391331",
-  "category": "Book",
-  "subcategory": "Non fiction",
-  "isDeleted": false,
-  "reviews": 0,
-  "releasedAt": "2021-09-17"
-  "createdAt": "2021-09-17T04:25:07.803Z",
-  "updatedAt": "2021-09-17T04:25:07.803Z",
-}
-```
-
-### reviews
-```yaml
-{
-  "_id": ObjectId("88abc190ef0288abc190ef88"),
-  bookId: ObjectId("88abc190ef0288abc190ef55"),
-  reviewedBy: "Jane Doe",
-  reviewedAt: "2021-09-17T04:25:07.803Z",
-  rating: 4,
-  review: "An exciting nerving thriller. A gripping tale. A must read book."
-}
-```
-
-## Response examples
-### Get books response
-```yaml
-{
-  status: true,
-  message: 'Books list',
-  data: [
-    {
-      "_id": ObjectId("88abc190ef0288abc190ef55"),
-      "title": "How to win friends and influence people",
-      "excerpt": "book body",
-      "userId": ObjectId("88abc190ef0288abc190ef02")
-      "category": "Book",
-      "reviews": 0,
-      "releasedAt": "2021-09-17T04:25:07.803Z"
-    },
-    {
-      "_id": ObjectId("88abc190ef0288abc190ef56"),
-      "title": "How to win friends and influence people",
-      "excerpt": "book body",
-      "userId": ObjectId("88abc190ef0288abc190ef02")
-      "category": "Book",
-      "reviews": 0,
-      "releasedAt": "2021-09-17T04:25:07.803Z"
-    }
-  ]
-}
-```
-
-### Book details response
-```yaml
-{
-  status: true,
-  message: 'Books list',
-  data: {
-    "_id": ObjectId("88abc190ef0288abc190ef55"),
-    "title": "How to win friends and influence people",
-    "excerpt": "book body",
-    "userId": ObjectId("88abc190ef0288abc190ef02")
-    "category": "Book",
-    "subcategory": ["Non fiction", "Self Help"],
-    "isDeleted": false,
-    "reviews": 4,
-    "releasedAt": "2021-09-17T04:25:07.803Z"
-    "createdAt": "2021-09-17T04:25:07.803Z",
-    "updatedAt": "2021-09-17T04:25:07.803Z",
-    "reviewsData": [
-      {
-        "_id": ObjectId("88abc190ef0288abc190ef88"),
-        bookId: ObjectId("88abc190ef0288abc190ef55"),
-        reviewedBy: "Jane Doe",
-        reviewedAt: "2021-09-17T04:25:07.803Z",
-        rating: 4,
-        review: "An exciting nerving thriller. A gripping tale. A must read book."
-      },
-      {
-        "_id": ObjectId("88abc190ef0288abc190ef89"),
-        bookId: ObjectId("88abc190ef0288abc190ef55"),
-        reviewedBy: "Jane Doe",
-        reviewedAt: "2021-09-17T04:25:07.803Z",
-        rating: 4,
-        review: "An exciting nerving thriller. A gripping tale. A must read book."
-      },
-      {
-        "_id": ObjectId("88abc190ef0288abc190ef90"),
-        bookId: ObjectId("88abc190ef0288abc190ef55"),
-        reviewedBy: "Jane Doe",
-        reviewedAt: "2021-09-17T04:25:07.803Z",
-        rating: 4,
-        review: "An exciting nerving thriller. A gripping tale. A must read book."
-      },
-      {
-        "_id": ObjectId("88abc190ef0288abc190ef91"),
-        bookId: ObjectId("88abc190ef0288abc190ef55"),
-        reviewedBy: "Jane Doe",
-        reviewedAt: "2021-09-17T04:25:07.803Z",
-        rating: 4,
-        review: "An exciting nerving thriller. A gripping tale. A must read book."
-      }, 
-    ]
-  }
-}
-```
-
-### Book details response no reviews
-```yaml
-{
-  status: true,
-  message: 'Books list',
-  data: {
-    "_id": ObjectId("88abc190ef0288abc190ef55"),
-    "title": "How to win friends and influence people",
-    "excerpt": "book body",
-    "userId": ObjectId("88abc190ef0288abc190ef02")
-    "category": "Book",
-    "subcategory": "Non fiction", "Self Help"],
-    "isDeleted": false,
-    "reviews": 0,
-    "releasedAt": "2021-09-17"
-    "createdAt": "2021-09-17T04:25:07.803Z",
-    "updatedAt": "2021-09-17T04:25:07.803Z",
-    "reviewsData": []
-  }
-}
-```
