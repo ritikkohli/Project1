@@ -1,5 +1,5 @@
 
-## Project - Books Management
+## Project - Blogging website
 
 live on - https://blog-manger.onrender.com/
 
