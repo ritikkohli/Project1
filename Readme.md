@@ -1,4 +1,5 @@
-## Blogging Site Mini Project Requirement
+## Blogging Site Mini Project
+
 
 live on - https://blog-manger.onrender.com/
 
@@ -92,8 +93,3 @@ example of a query url: blogs?filtername=filtervalue&f2=fv2
 ### Authorisation
 - Make sure that only the owner of the blogs is able to edit or delete the blog.
 - In case of unauthorized access return an appropirate error message.
-
-
-#### Refer https://jsonplaceholder.typicode.com/guide/ for some fake blogs data.
-
-#### Note: Create a group database and use the same database in connection string by replacing `groupXDatabase
