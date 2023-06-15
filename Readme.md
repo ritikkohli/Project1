@@ -3,6 +3,31 @@
 
 live on - https://blog-manger.onrender.com/
 
+### HOME
+![homepage](https://github.com/ritikkohli/blogManagement/assets/108524122/c6315df0-364f-43f0-9672-ee9ad978eb8a)
+
+### Sidebar
+![sidebar](https://github.com/ritikkohli/blogManagement/assets/108524122/e6a3172e-00c2-45a2-86a6-04ddd5b60de9)
+
+### Signup
+![signup](https://github.com/ritikkohli/blogManagement/assets/108524122/e5d77215-40ef-40d6-8e10-3ccd805c2c98)
+
+### Login
+![login](https://github.com/ritikkohli/blogManagement/assets/108524122/985c6f32-aecd-4009-b22e-84e4a7fd278b)
+
+### Sidebar after login
+![sidebar-after-login](https://github.com/ritikkohli/blogManagement/assets/108524122/a2675a6f-677d-4feb-a890-a2be8252eeb4)
+
+### Myblogs
+![myblogs](https://github.com/ritikkohli/blogManagement/assets/108524122/221ad8ce-d62e-4877-a25b-c2fff7626793)
+
+### Add blog
+![add blog](https://github.com/ritikkohli/blogManagement/assets/108524122/9a3f0ff3-35bd-4350-9341-e577ff8a6ee5)
+
+### Edit blog
+![edit-blog](https://github.com/ritikkohli/blogManagement/assets/108524122/2cedf461-0ca1-4150-a0d6-56e014285f30)
+
+
 ### Key points
 - Create a group database `groupXDatabase`. You can clean the db you previously used and resue that.
 - This time each group should have a *single git branch*. Coordinate amongst yourselves by ensuring every next person pulls the code last pushed by a team mate. You branch will be checked as part of the demo. Branch name should follow the naming convention `project/booksManagementGroupX`
